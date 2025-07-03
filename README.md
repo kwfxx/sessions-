@@ -59,3 +59,11 @@ sesss=random.choice([
 '266d4adf7a9741e20386d77215fe1e1c',
 'f76100b0c36e12ceec7dfedebb50f967'
             ])
+
+      
+cookies ={
+            "passport_csrf_token": self.secret,
+            "passport_csrf_token_default": self.secret,
+            "sessionid": sesss
+            }
+            self.ses.cookies.update(cookies)
