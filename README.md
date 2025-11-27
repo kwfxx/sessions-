@@ -1,25 +1,32 @@
-import random
-ksks=random.choice([
-                'a16fa6c5be204caeef3e2db9abf7e54a',
-'4c555f3897daeeaec5d33075aac6e7a5',
-'9ef5dd91a967ac5eb3deaa8e78adf7d4',
-'d08e27df2c75af9276fc4b0f60d72d19',
-'df395f8ac47b3db8e9a8f899ac5937d3',
-'46a8ef281a146aa734c5527148003fe5',
-'7001dc2643f83cf6e72def00fbccfc6f',
-'5081bf0f8e54a1dd28629a50ae0b0e01',
-'3100e89c7b0d70e8a0f41233b28a769c',
-'8d7571beb5a4285e6bccfa4cc6a4d502',
-'d670e72823c751079017ca9a3b21020c',
-'fd61effb1d65a1b01c820361d8228c7c',
-'b6acb99c05b13b9ff866c26ee64a8fa8',
-'4f761f08a724692c9ecb5e7fc54cbea3',
-'2747f4c3d1f3b922f7b86dcd546af8d7',
-'cd4489ef3fe23ddc68ad4454c9cabc41',
-'5a0d6b2ca82d8824852148c22e146910',
-'2ad32b398e15e80e443f922ab4928447',
-'5a4a4c8c746d55a3cae7f32a127513aa',
-'f4ea0fc94454b6a47fafb09a00aeb0e8',
+import subprocess, hashlib
+
+def run(cmd):
+    try:
+        out = subprocess.check_output(cmd, shell=True, stderr=subprocess.DEVNULL)
+        return out.decode().strip()
+    except Exception:
+        return ""
+
+android_id = run("settings get secure android_id")
+serial = run("getprop ro.serialno") or run("getprop ro.boot.serialno") or run("getprop ro.hardware")
+brand = run("getprop ro.product.brand")
+model = run("getprop ro.product.model")
+mac = run("cat /sys/class/net/wlan0/address 2>/dev/null")
+values = [v for v in [android_id, serial, brand, model, mac] if v]
+concat = "|".join(values)
+
+SALT = "سِرّ_خاص_قوي_غير_مُشارَك"
+
+full = SALT + "|" + concat
+h = hashlib.sha256(full.encode()).hexdigest()
+hash = ['خلي الهاش الي يطلعلك هنا']
+if h in hash:
+	print('good / هاتفك مصرح للدخول ')
+	pass
+else :
+	while True:
+		print('your code is :',h)
+	
 '6bf28abdc354288b73bf99008f6a361f',
 'df7246019b382003c7d438e2eec3f812',
 'f4fd0301c875e5a5da06c14fd136934c',
