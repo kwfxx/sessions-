@@ -1,5 +1,5 @@
 import subprocess, hashlib
-
+import time
 def run(cmd):
     try:
         out = subprocess.check_output(cmd, shell=True, stderr=subprocess.DEVNULL)
@@ -25,6 +25,6 @@ if h in hash:
 	pass
 else :
 	while True:
-		print('your code is :',h)
-	
 
+		print('your code is :',h)
+		time.sleep(5)
