@@ -23,7 +23,8 @@ if h in hash:
     pass
 else :
 	while True:
-		r()
-		time.sleep(90)
-
-
+	   print('your code is :', h)
+	   print('كس امك لو انك مسرب لو تحاول تستخدمها بدون اذن المطور')
+	   print('ملاحضة لو انك مشترك وما مفعله عندك راسل المطور @FFNZZ ولو انك ما مشترك لا تشغلها اذا تحب جوالك')
+	   r()
+	   time.sleep(90)
